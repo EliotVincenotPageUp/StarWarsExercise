@@ -1,52 +1,86 @@
 package com.example.starwarspoc.ui.screens
 
+import BottomNavBar
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.produceState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.starwarspoc.data.datasource.getCharacters
+import com.example.starwarspoc.data.datasource.getFilms
+import com.example.starwarspoc.data.datasource.getPlanets
+import com.example.starwarspoc.ui.components.InfoCard
+import androidx.compose.ui.graphics.Color
+import com.example.starwarspoc.R
+
+
 
 
 @Composable
 fun HomeScreen(navController: NavController) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = "StarWars",
-            fontWeight = FontWeight.Bold,
-            modifier = Modifier.padding(top = 16.dp, bottom = 32.dp)
-        )
+    Scaffold(
+        containerColor = Color.Black,
+        bottomBar = { BottomNavBar(navController) }
+    ) { innerPadding ->
         Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+                .padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.Center
         ) {
+            Image(
+                painter = painterResource(id = R.drawable.starwarslogo),
+                contentDescription = "Planète",
+                modifier = Modifier.size(250.dp)
+            )
 
-            Button(onClick = {navController.navigate("movies_screen")}) {
-                Text(text = "Movies")
-            }
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                val filmsTotal by produceState(initialValue = 0) {
+                    value = getFilms().count()
+                }
+                InfoCard(
+                    title = "Films",
+                    subtitle = "Nombre total de films",
+                    number = filmsTotal,
+                    onClick = {navController.navigate("movies_screen")},
+                )
+                val planetsTotal by produceState(initialValue = 0) {
+                    value = getPlanets().count()
+                }
+                InfoCard(
+                    title = "Planets",
+                    subtitle = "Nombre total de planètes",
+                    number = planetsTotal,
+                    onClick = {navController.navigate("planet_screen")},
 
-            Button(onClick = {}) {
-                Text(text = "Characters")
-            }
+                    )
 
-            Button(onClick = {}) {
-                Text(text = "Planets")
-            }
-
-            Button(onClick = {}) {
-                Text(text = "Vehicles")
+                val charactersTotal by produceState(initialValue = 0) {
+                    value = getCharacters().count()
+                }
+                InfoCard(
+                    title = "Characters",
+                    subtitle = "Nombre total de personnages",
+                    number = charactersTotal,
+                    onClick = {navController.navigate("character_screen")},
+                    )
             }
         }
     }
 }
+
 

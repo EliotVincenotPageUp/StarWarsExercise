@@ -7,7 +7,10 @@ import kotlinx.serialization.Serializable
 data class Characters (
 
     val name : String,
-    val height: Int,
+    val height: String,
     val gender : String,
+
+    @SerialName("birth_year")
+    val birthday: String,
 )
 
