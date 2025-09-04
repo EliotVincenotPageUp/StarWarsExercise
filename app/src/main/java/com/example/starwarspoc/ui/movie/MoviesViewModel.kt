@@ -23,10 +23,13 @@ class MovieViewModel : ViewModel() {
     }
 
     fun loadMovies() {
-        viewModelScope.launch {
-            val movies = getFilms()
-            Log.i("Movies", movies.toString())
-            _state.update { it.copy(movies = movies) }
+        val job =
+            viewModelScope.launch {
+                val movies = getFilms()
+                Log.i("Movies", movies.toString())
+                _state.update { it.copy(movies = movies) }
+            }
+        println(job.isActive)
         }
-    }
-}
+ }
+

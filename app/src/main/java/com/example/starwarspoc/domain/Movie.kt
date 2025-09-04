@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Movies (
+data class Movie (
     @SerialName("title")
     val name : String,
 

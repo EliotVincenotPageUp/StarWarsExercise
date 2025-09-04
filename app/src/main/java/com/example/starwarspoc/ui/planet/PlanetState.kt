@@ -1,7 +1,7 @@
 package com.example.starwarspoc.ui.planet
 
-import com.example.starwarspoc.domain.Planets
+import com.example.starwarspoc.domain.Planet
 
 data class PlanetState (
-    val planets : List<Planets> = emptyList(),
+    val planets : List<Planet> = emptyList(),
 )

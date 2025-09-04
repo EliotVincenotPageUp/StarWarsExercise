@@ -1,14 +1,17 @@
 package com.example.starwarspoc.data.datasource
 
-import android.R
 import android.util.Log
-import com.example.starwarspoc.domain.Characters
-import com.example.starwarspoc.domain.Movies
-import com.example.starwarspoc.domain.Planets
+import com.example.starwarspoc.domain.Character
+import com.example.starwarspoc.domain.Movie
+import com.example.starwarspoc.domain.Planet
 import io.ktor.client.*
 import io.ktor.client.call.body
 import io.ktor.client.engine.cio.*
 import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.plugins.logging.ANDROID
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
 import io.ktor.serialization.kotlinx.json.*
@@ -18,15 +21,13 @@ val client = HttpClient(CIO) {
     install(ContentNegotiation) {
         json(Json { ignoreUnknownKeys = true })
     }
+    install(Logging){
+        logger = Logger.ANDROID
+        level = LogLevel.ALL
+    }
 }
 
-suspend fun getFilms(): List<Movies> {
-    val client = HttpClient(CIO) {
-        install(ContentNegotiation) {
-            json(Json { ignoreUnknownKeys = true })
-        }
-    }
-
+suspend fun getFilms(): List<Movie> {
     return try {
         val response: HttpResponse = client.get("https://swapi.info/api/films")
         Log.i("API", "Films status: ${response.status}")
@@ -39,13 +40,7 @@ suspend fun getFilms(): List<Movies> {
     }
 }
 
-suspend fun getCharacters(): List<Characters> {
-    val client = HttpClient(CIO) {
-        install(ContentNegotiation) {
-            json(Json { ignoreUnknownKeys = true })
-        }
-    }
-
+suspend fun getCharacters(): List<Character> {
     return try {
         val response: HttpResponse = client.get("https://swapi.info/api/people")
         Log.i("API", "Characters status: ${response.status}")
@@ -58,13 +53,7 @@ suspend fun getCharacters(): List<Characters> {
     }
 }
 
-suspend fun getPlanets(): List<Planets> {
-    val client = HttpClient(CIO) {
-        install(ContentNegotiation) {
-            json(Json { ignoreUnknownKeys = true })
-        }
-    }
-
+suspend fun getPlanets(): List<Planet> {
     return try {
         val response: HttpResponse = client.get("https://swapi.info/api/planets")
         Log.i("API", "Planets status: ${response.status}")
@@ -78,15 +67,10 @@ suspend fun getPlanets(): List<Planets> {
 }
 
 suspend fun getCharacterById(id: Int): Character {
-    val client = HttpClient(CIO) {
-        install(ContentNegotiation) {
-            json(Json { ignoreUnknownKeys = true })
-        }
-    }
     try {
         val response: HttpResponse = client.get("https://swapi.info/api/people/$id")
 
-        Log.i("API", "Character status: ${response.status}")
+        Log.i("API", "Character status by Id: ${response.status}")
 
         return response.body()
     } finally {

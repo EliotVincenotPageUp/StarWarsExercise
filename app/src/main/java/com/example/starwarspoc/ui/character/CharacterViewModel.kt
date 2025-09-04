@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.starwarspoc.data.datasource.getCharacterById
 import com.example.starwarspoc.data.datasource.getCharacters
 import com.example.starwarspoc.ui.screens.CharacterScreen
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
