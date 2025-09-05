@@ -22,7 +22,7 @@ fun BottomNavBar(navController: NavController) {
 
         NavigationBarItem(
             selected = false,
-            onClick = { navController.navigate("") },
+            onClick = { navController.navigate("profil_screen") },
             icon = { Icon(Icons.Default.Person, contentDescription = "Movies")},
             label = { Text("Profil") }
         )

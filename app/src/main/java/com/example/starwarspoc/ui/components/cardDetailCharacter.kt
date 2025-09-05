@@ -1,0 +1,95 @@
+package com.example.starwarspoc.ui.components
+
+import android.R
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.starwarspoc.domain.Character
+
+@Composable
+fun CardDetailCharacter(
+    character: Character
+) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color(0xFF211F12)
+        ),
+        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+        border = BorderStroke(1.dp, Color.White)
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
+            Text(
+                text = character.name,
+                style = MaterialTheme.typography.titleLarge.copy(color = Color.Yellow, fontWeight = FontWeight.Bold),
+                modifier = Modifier.padding(bottom = 8.dp)
+            )
+
+            Text(
+                text = "Naissance : " + character.birthYear,
+                style = MaterialTheme.typography.titleMedium.copy(color = Color.Yellow),
+                modifier = Modifier.padding(bottom = 5.dp)
+            )
+
+            Text(
+                text = "Taille : " + character.height,
+                style = MaterialTheme.typography.titleMedium.copy(color = Color.Yellow),
+                modifier = Modifier.padding(bottom = 5.dp)
+            )
+            Text(
+                text = "Poid : "+character.mass,
+                style = MaterialTheme.typography.titleMedium.copy(color = Color.Yellow),
+                modifier = Modifier.padding(bottom = 5.dp)
+            )
+            Text(
+                text = "Hair Color : "+character.hairColor,
+                style = MaterialTheme.typography.titleMedium.copy(color = Color.Yellow),
+                modifier = Modifier.padding(bottom = 5.dp)
+            )
+            Text(
+                text = "Skin color : "+character.skinColor,
+                style = MaterialTheme.typography.titleMedium.copy(color = Color.Yellow),
+                modifier = Modifier.padding(bottom = 5.dp)
+            )
+            Text(
+                text = "Eye color : "+character.eyeColor,
+                style = MaterialTheme.typography.titleMedium.copy(color = Color.Yellow),
+                modifier = Modifier.padding(bottom = 5.dp)
+            )
+            Text(
+                text = "Gender : "+character.gender,
+                style = MaterialTheme.typography.titleMedium.copy(color = Color.Yellow),
+                modifier = Modifier.padding(bottom = 5.dp)
+            )
+            Text(
+                text = "Homeworld : "+character.homeworld,
+                style = MaterialTheme.typography.titleMedium.copy(color = Color.Yellow),
+                modifier = Modifier.padding(bottom = 5.dp)
+            )
+        }
+    }
+}

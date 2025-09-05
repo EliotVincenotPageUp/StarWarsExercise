@@ -37,18 +37,13 @@ fun CharacterScreen (
         LaunchedEffect(Unit) {
             onEvent(CharacterEvent.OnLoadCharacters)
         }
-    Scaffold(
-        containerColor = Color.Black,
-        bottomBar = { BottomNavBar(navController) }
 
-    ) { innerPadding ->
-
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(15.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
             Text(
                 text = "Characters",
                 color = Color.Yellow,
@@ -65,14 +60,13 @@ fun CharacterScreen (
                     CardCharacter(
                         name = character.name,
                         gender = character.gender,
-                        birthday = character.birthday,
+                        birthday = character.birthYear,
                         onClick = {
+                            navController.navigate("character_detail_screen/${index +1}")
                             onEvent(CharacterEvent.OnLoadCharacterById(index + 1))
                         }
                     )
                 }
             }
-
         }
     }
-}

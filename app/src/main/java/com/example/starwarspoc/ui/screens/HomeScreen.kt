@@ -4,6 +4,7 @@ import BottomNavBar
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -21,20 +22,14 @@ import com.example.starwarspoc.data.datasource.getPlanets
 import com.example.starwarspoc.ui.components.InfoCard
 import androidx.compose.ui.graphics.Color
 import com.example.starwarspoc.R
-
-
-
+import com.example.starwarspoc.ui.theme.StarWarsPOCTheme
 
 @Composable
 fun HomeScreen(navController: NavController) {
-    Scaffold(
-        containerColor = Color.Black,
-        bottomBar = { BottomNavBar(navController) }
-    ) { innerPadding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding)
+                .padding(12.dp)
                 .padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
@@ -81,6 +76,6 @@ fun HomeScreen(navController: NavController) {
             }
         }
     }
-}
+
 
 

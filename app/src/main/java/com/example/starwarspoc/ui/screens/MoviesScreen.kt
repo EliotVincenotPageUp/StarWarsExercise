@@ -22,6 +22,7 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.example.starwarspoc.MainActivity
 import com.example.starwarspoc.ui.components.CardMovie
 
 
@@ -34,20 +35,15 @@ fun MoviesScreen(
     LaunchedEffect(Unit) {
         onEvent(MovieEvent.OnLoadMovies)
     }
-    Scaffold(
-        containerColor = Color.Black,
-        bottomBar = { BottomNavBar(navController) }
-    ) { innerPadding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding)
                 .padding(15.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
                 text = "Movies",
-                color = Color.Yellow,
+                color = MaterialTheme.colorScheme.secondary,
                 fontSize = 41.sp,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
@@ -65,6 +61,6 @@ fun MoviesScreen(
             }
         }
     }
-}
+
 
 

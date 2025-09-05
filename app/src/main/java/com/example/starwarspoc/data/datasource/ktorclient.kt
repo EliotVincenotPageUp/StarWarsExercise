@@ -35,8 +35,6 @@ suspend fun getFilms(): List<Movie> {
     } catch (e: Exception) {
         Log.e("API", "Erreur getFilms: ${e.message}", e)
         emptyList()
-    } finally {
-        client.close()
     }
 }
 
@@ -48,8 +46,6 @@ suspend fun getCharacters(): List<Character> {
     } catch (e: Exception) {
         Log.e("API", "Erreur getCharacters: ${e.message}", e)
         emptyList()
-    } finally {
-        client.close()
     }
 }
 
@@ -61,22 +57,23 @@ suspend fun getPlanets(): List<Planet> {
     } catch (e: Exception) {
         Log.e("API", "Erreur getplanets: ${e.message}", e)
         emptyList()
-    } finally {
-        client.close()
     }
 }
 
-suspend fun getCharacterById(id: Int): Character {
+suspend fun getCharacterById(id: Int?): Character {
     try {
         val response: HttpResponse = client.get("https://swapi.info/api/people/$id")
 
         Log.i("API", "Character status by Id: ${response.status}")
 
         return response.body()
-    } finally {
-        client.close()
     }
+    finally {
+
+    }
+
 }
+
 
 
 

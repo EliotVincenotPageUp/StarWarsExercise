@@ -38,36 +38,30 @@ fun PlanetScreen(
     LaunchedEffect(Unit) {
         onEvent(PlanetEvent.OnLoadPlanet)
     }
-    Scaffold(
-        containerColor = Color.Black,
-        bottomBar = { BottomNavBar(navController) }
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .padding(32.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = "Planets",
-                color = Color.Yellow,
-                fontSize = 41.sp,
-                fontWeight = FontWeight.Bold,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth()
-            )
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(15.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "Planets",
+            color = MaterialTheme.colorScheme.secondary,
+            fontSize = 41.sp,
+            fontWeight = FontWeight.Bold,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth()
+        )
 
-            Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(24.dp))
 
-            LazyColumn {
-                items(state.planets) { planet ->
-                    CardPlanet(
-                        planet.name,
-                        planet.rotationPeriod
-                    )
-                }
+        LazyColumn {
+            items(state.planets) { planet ->
+                CardPlanet(
+                    planet.name,
+                    planet.rotationPeriod
+                )
             }
         }
     }
-}
+    }
